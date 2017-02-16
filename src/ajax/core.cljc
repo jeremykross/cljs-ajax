@@ -15,6 +15,7 @@
                  :cljs [[goog.net.XhrIo :as xhr]
                         [ajax.xhrio]
                         [ajax.xml-http-request]
+                        [ajax.fetch]
                         [goog.json :as goog-json]
                         [goog.Uri.QueryData :as query-data]
                         [goog.json.Serializer]
@@ -486,9 +487,12 @@
                          (or % @default-interceptors)
                          request-interceptors)))))
 
+(def default-api 
+  #? (:clj  (atom #(ajax.apache/Connection.))
+      :cljs (atom #(new goog.net.XhrIo))))
+
 (defn new-default-api []
-  #? (:clj  (ajax.apache/Connection.)
-      :cljs (new goog.net.XhrIo)))
+  (@default-api))
 
 (defn raw-ajax-request [{:keys [interceptors] :as request}]
   (let [request (reduce process-request request interceptors)

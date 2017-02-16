@@ -38,6 +38,7 @@
    {:dev  {:source-paths ["src"]
            :compiler {:output-to "target/main.js"
                       :output-dir "target"
+                      :language-in :ecmascript5
                       ;;; :source-map "target/main.js.map"
                       :optimizations :whitespace
                       :pretty-print true}}
@@ -45,6 +46,7 @@
            :incremental? true
            :compiler {:output-to "target-test/unit-test.js"
                       :output-dir "target-test"
+                      :language-in :ecmascript5
                       ;;; :source-map "target-test/unit-test.js.map"
                       :main ajax.test.runner
                       :optimizations :whitespace
@@ -53,6 +55,7 @@
           :incremental? true
           :compiler {:output-to "target-int/integration.js"
                      :output-dir "target-int"
+                      :language-in :ecmascript5
                      ;;; :source-map "target-int/integration.js.map"
                      :warnings {:single-segment-namespace false}
                      :optimizations :whitespace
